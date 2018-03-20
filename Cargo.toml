@@ -1,0 +1,6 @@
+[package]
+name = "rust-collision-detector"
+version = "0.1.0"
+authors = ["Joel Eager <jee7291@rit.edu>"]
+
+[dependencies]
