@@ -1,9 +1,12 @@
 mod sat;
 
-use sat::Point;
+use sat::Vector;
 
 fn main() {
-    let tank = vec![Point(195, 95), Point(205, 95), Point(205, 105), Point(195, 105)];
-    let shell = vec![Point(199.5, 99.5), Point(200.5, 99.5), Point(200.5, 100.5), Point(199.5, 100.5)];
-    println!("Result: {}", sat::has_collided(poly1, poly2, None));
+    let tank = vec![Vector(195.0, 95.0), Vector(205.0, 95.0), Vector(205.0, 105.0),
+                    Vector(195.0, 105.0)];
+    let shell = vec![Vector(199.5, 99.5), Vector(200.5, 99.5), Vector(200.5, 100.5),
+                     Vector(199.5, 100.5)];
+
+    println!("Result: {}", sat::has_collided(tank, shell, None));
 }
