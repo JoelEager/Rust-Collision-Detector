@@ -30,3 +30,24 @@ fn dot_product(vector1: &Vector, vector2: &Vector) -> f64 {
     // Returns the dot (or scalar) product of the two vectors
     return vector1.0 * vector2.0 + vector1.1 * vector2.1;
 }
+
+fn project(poly: Vec<Vector>, axis: &Vector) -> Vector {
+    // Returns a vector showing how much of the poly lies along the axis
+    let mut min: Option<f64> = None;
+    let mut max: Option<f64> = None;
+
+    for point in poly.iter() {
+        let dot = dot_product(point, axis);
+
+        match min {
+            Some(val) if val < dot => (),
+            _ => min = Some(dot)
+        }
+        match max {
+            Some(val) if val > dot => (),
+            _ => max = Some(dot)
+        }
+    }
+
+    return Vector(min.unwrap(), max.unwrap());
+}
