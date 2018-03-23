@@ -20,3 +20,10 @@ Just clone this repo, install the cargo dependencies, and compile it through car
 | --------------- | --------------- | ----------------- |
 | With max_dist   | 0.0567 seconds  | 0.8252 seconds    |
 | Without         | 0.5075 seconds  | 2.2710 seconds    |
+
+**1,000 iterations on a custom desktop with an AMD A10-6800K:**
+
+| Mode            | Time for Rust   | Time for Python   |
+| --------------- | --------------- | ----------------- |
+| With max_dist   | 0.1004 seconds  | 1.5931 seconds    |
+| Without         | 0.9352 seconds  | 3.5852 seconds    |
