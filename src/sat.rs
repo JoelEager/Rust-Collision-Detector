@@ -1,3 +1,5 @@
+// A Rust implementation of separating axis theorem
+
 pub struct Vector(pub f64, pub f64);
 
 pub fn has_collided(poly1: &Vec<Vector>, poly2: &Vec<Vector>, max_dist: &Option<f64>) -> bool {
