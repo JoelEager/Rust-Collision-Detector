@@ -5,8 +5,7 @@ pub struct Vector(pub f32, pub f32);
 
 pub fn has_collided(poly1: &[Vector], poly2: &[Vector], max_dist: &Option<f32>) -> bool {
     /* Checks for a collision between two convex 2D polygons using separating axis theorem (SAT)
-    poly1, poly2: The two polygons described as lists of points as tuples
-        Example: [(x1, y1), (x2, y2), (x3, y3)]
+    poly1, poly2: The two polygons described as slices of points as Vectors
         Note: The points list must go in sequence around the polygon
     maxDist: The maximum distance between any two points of any two polygons that can be touching
         If this None then the optimization check that uses it will be skipped
