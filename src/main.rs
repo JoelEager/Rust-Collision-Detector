@@ -2,7 +2,7 @@ mod sat;
 
 extern crate time;
 
-use std::{env, f32};
+use std::env;
 use sat::{Vector, has_collided};
 use time::{PreciseTime, Duration};
 
@@ -32,6 +32,7 @@ fn run_test(iterations: i32, max_dist: Option<f32>) -> Duration {
                          Vector(99.5, 100.5)];
 
         while !has_collided(&tank, &shell, &max_dist) {
+            // Move the shell
             for vector in shell.iter_mut() {
                 vector.0 += 1.0;
             }

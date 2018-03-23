@@ -24,10 +24,7 @@ fn run_sat(poly1: &[Vector], poly2: &[Vector]) -> bool {
     edges.append(&mut poly_to_edges(&poly1));
     edges.append(&mut poly_to_edges(&poly2));
 
-    let mut axes = Vec::new();
-    for edge in edges {
-        axes.push(orthogonal(edge));
-    }
+    let axes = edges.into_iter().map(orthogonal);
 
     for axis in axes {
         if !overlap(project(&poly1, axis), project(&poly2, axis)) {
@@ -47,7 +44,7 @@ fn edge_vector(point1: Vector, point2: Vector) -> Vector {
 
 fn poly_to_edges(poly: &[Vector]) -> Vec<Vector> {
     // Returns a Vec of the edges of the poly as vectors
-    let mut edges = Vec::new();
+    let mut edges = Vec::with_capacity(poly.len());
 
     for index in 0..poly.len() {
         edges.push(edge_vector(poly[index], poly[(index + 1) % poly.len()]));
