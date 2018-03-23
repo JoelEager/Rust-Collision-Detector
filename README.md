@@ -6,11 +6,11 @@ This is a Rust port of the collision detection logic used by pyTanks
 implementation and the Python implementation located there are configured to test the execution time of this algorithm.
 
 ## Setup
-Just clone this repo, install the cargo dependencies, and compile it through cargo.
+Just clone this repo and have cargo take care of the setup and compiling as shown below.
 
 ## Usage
 ```bash
-./rust-collision-detector [iterations]
+cargo run --release -- [iterations]
 ```
 
 ## Testing results
@@ -18,10 +18,11 @@ Just clone this repo, install the cargo dependencies, and compile it through car
 
 | Mode            | Time for Rust   | Time for Python   |
 | --------------- | --------------- | ----------------- |
-| With max_dist   | 0.0567 seconds  | 0.8252 seconds    |
-| Without         | 0.5075 seconds  | 2.2710 seconds    |
+| With max_dist   | 0.0025 seconds  | 0.8252 seconds    |
+| Without         | 0.0380 seconds  | 2.2710 seconds    |
 
 **1,000 iterations on a custom desktop with an AMD A10-6800K:**
+(Currently out of date.)
 
 | Mode            | Time for Rust   | Time for Python   |
 | --------------- | --------------- | ----------------- |
