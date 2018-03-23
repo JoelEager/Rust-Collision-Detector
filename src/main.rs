@@ -10,7 +10,7 @@ fn main() {
     let iterations = match get_iterations() {
         Some(value) => value,
         _ => {
-            println!("Usage: rust-collision-detector <iterations>");
+            println!("Usage:\n./rust-collision-detector <iterations>");
             return;
         }
     };
