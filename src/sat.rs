@@ -1,8 +1,7 @@
 pub struct Vector(pub f64, pub f64);
 
-pub fn has_collided(poly1: &Vec<Vector>, poly2: &Vec<Vector>, max_dist: Option<f64>) -> bool {
-    // Checks for a collision between two convex 2D polygons using separating axis theorem (SAT)
-    /*
+pub fn has_collided(poly1: &Vec<Vector>, poly2: &Vec<Vector>, max_dist: &Option<f64>) -> bool {
+    /* Checks for a collision between two convex 2D polygons using separating axis theorem (SAT)
     poly1, poly2: The two polygons described as lists of points as tuples
         Example: [(x1, y1), (x2, y2), (x3, y3)]
         Note: The points list must go in sequence around the polygon
@@ -11,7 +10,7 @@ pub fn has_collided(poly1: &Vec<Vector>, poly2: &Vec<Vector>, max_dist: Option<f
     */
     let estimated_dist = (poly1[1].0 - poly2[0].0).powi(2) + (poly1[1].1 - poly2[0].1).powi(2);
     return match max_dist {
-        Some(max_dist) if estimated_dist > max_dist.powi(2) => false,
+        &Some(max_dist) if estimated_dist > max_dist.powi(2) => false,
         _ => run_sat(poly1, poly2)
     };
 }
