@@ -30,4 +30,4 @@ cargo run --release -- [iterations]
 | With max_dist   | 0.0273 seconds  | 15.844 seconds    |
 | Without         | 0.4651 seconds  | 40.617 seconds    |
 
-(See the Kotlin results [here](https://github.com/JoelEager/Kotlin-Collision-Detector/blob/master/README.md).)
+(See the Kotlin results [here](https://github.com/JoelEager/Kotlin-Collision-Detector#testing-results).)
