@@ -9,12 +9,14 @@ implementation and the Python implementation located there are configured to tes
 Just clone this repo, install the cargo dependencies, and compile it through cargo.
 
 ## Usage
+```bash
 ./rust-collision-detector [iterations]
+```
 
 ## Testing results
 **1,000 iterations on an Asus laptop with a Intel Core i7-8550U:**
 
 | Mode            | Time for Rust   | Time for Python   |
 | --------------- | --------------- | ----------------- |
-| With max_dist   | 0.0567 seconds  | 0.8252 seconds	  |
+| With max_dist   | 0.0567 seconds  | 0.8252 seconds    |
 | Without         | 0.5075 seconds  | 2.2710 seconds    |
