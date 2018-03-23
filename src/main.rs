@@ -2,7 +2,7 @@ mod sat;
 
 extern crate time;
 
-use std::{env, f64};
+use std::{env, f32};
 use sat::{Vector, has_collided};
 use time::{PreciseTime, Duration};
 
@@ -22,13 +22,13 @@ fn main() {
     println!("Time without:       {}", run_test(iterations, None));
 }
 
-fn run_test(iterations: i32, max_dist: Option<f64>) -> Duration {
+fn run_test(iterations: i32, max_dist: Option<f32>) -> Duration {
     let start = PreciseTime::now();
 
     for _ in 0..iterations {
-        let tank = vec![Vector(195.0, 95.0), Vector(205.0, 95.0), Vector(205.0, 105.0),
+        let tank = [Vector(195.0, 95.0), Vector(205.0, 95.0), Vector(205.0, 105.0),
                         Vector(195.0, 105.0)];
-        let mut shell = vec![Vector(99.5, 99.5), Vector(100.5, 99.5), Vector(100.5, 100.5),
+        let mut shell = [Vector(99.5, 99.5), Vector(100.5, 99.5), Vector(100.5, 100.5),
                          Vector(99.5, 100.5)];
 
         while !has_collided(&tank, &shell, &max_dist) {

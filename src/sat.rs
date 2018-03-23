@@ -1,8 +1,9 @@
 // A Rust implementation of separating axis theorem
 
-pub struct Vector(pub f64, pub f64);
+#[derive(Clone, Copy)]
+pub struct Vector(pub f32, pub f32);
 
-pub fn has_collided(poly1: &Vec<Vector>, poly2: &Vec<Vector>, max_dist: &Option<f64>) -> bool {
+pub fn has_collided(poly1: &[Vector], poly2: &[Vector], max_dist: &Option<f32>) -> bool {
     /* Checks for a collision between two convex 2D polygons using separating axis theorem (SAT)
     poly1, poly2: The two polygons described as lists of points as tuples
         Example: [(x1, y1), (x2, y2), (x3, y3)]
@@ -13,11 +14,11 @@ pub fn has_collided(poly1: &Vec<Vector>, poly2: &Vec<Vector>, max_dist: &Option<
     let estimated_dist = (poly1[1].0 - poly2[0].0).powi(2) + (poly1[1].1 - poly2[0].1).powi(2);
     return match max_dist {
         &Some(max_dist) if estimated_dist > max_dist.powi(2) => false,
-        _ => run_sat(poly1, poly2)
+        &Some(_) | &None => run_sat(poly1, poly2)
     };
 }
 
-fn run_sat(poly1: &Vec<Vector>, poly2: &Vec<Vector>) -> bool {
+fn run_sat(poly1: &[Vector], poly2: &[Vector]) -> bool {
     // Implements the actual SAT algorithm
     let mut edges = Vec::new();
     edges.append(&mut poly_to_edges(&poly1));
@@ -25,11 +26,11 @@ fn run_sat(poly1: &Vec<Vector>, poly2: &Vec<Vector>) -> bool {
 
     let mut axes = Vec::new();
     for edge in edges {
-        axes.push(orthogonal(&edge));
+        axes.push(orthogonal(edge));
     }
 
     for axis in axes {
-        if !overlap(project(&poly1, &axis), project(&poly2, &axis)) {
+        if !overlap(project(&poly1, axis), project(&poly2, axis)) {
             // The polys don't overlap on this axis so they can't be touching
             return false;
         }
@@ -39,39 +40,39 @@ fn run_sat(poly1: &Vec<Vector>, poly2: &Vec<Vector>) -> bool {
     return true;
 }
 
-fn edge_vector(point1: &Vector, point2: &Vector) -> Vector {
+fn edge_vector(point1: Vector, point2: Vector) -> Vector {
     // Returns a vector going from point1 to point2
     return Vector(point2.0 - point1.0, point2.1 - point1.1);
 }
 
-fn poly_to_edges(poly: &Vec<Vector>) -> Vec<Vector> {
+fn poly_to_edges(poly: &[Vector]) -> Vec<Vector> {
     // Returns a Vec of the edges of the poly as vectors
     let mut edges = Vec::new();
 
     for index in 0..poly.len() {
-        edges.push(edge_vector(&poly[index], &poly[(index + 1) % poly.len()]));
+        edges.push(edge_vector(poly[index], poly[(index + 1) % poly.len()]));
     }
 
     return edges;
 }
 
-fn orthogonal(vector: &Vector) -> Vector {
+fn orthogonal(vector: Vector) -> Vector {
     // Returns a new vector which is orthogonal to the given vector
     return Vector(vector.1, -vector.0);
 }
 
-fn dot_product(vector1: &Vector, vector2: &Vector) -> f64 {
+fn dot_product(vector1: Vector, vector2: Vector) -> f32 {
     // Returns the dot (or scalar) product of the two vectors
     return vector1.0 * vector2.0 + vector1.1 * vector2.1;
 }
 
-fn project(poly: &Vec<Vector>, axis: &Vector) -> Vector {
+fn project(poly: &[Vector], axis: Vector) -> Vector {
     // Returns a vector showing how much of the poly lies along the axis
-    let mut min: Option<f64> = None;
-    let mut max: Option<f64> = None;
+    let mut min: Option<f32> = None;
+    let mut max: Option<f32> = None;
 
     for point in poly.iter() {
-        let dot = dot_product(point, axis);
+        let dot = dot_product(*point, axis);
 
         match min {
             Some(val) if val < dot => (),
