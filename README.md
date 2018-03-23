@@ -16,12 +16,12 @@ cargo run --release -- [iterations]
 ```
 
 ## Testing results
-**1,000 iterations on an Asus laptop with a Intel Core i7-8550U:**
+**10,000 iterations on an Asus laptop with a Intel Core i7-8550U:**
 
 | Mode            | Time for Rust   | Time for Python   |
 | --------------- | --------------- | ----------------- |
-| With max_dist   | 0.0018 seconds  | 0.8252 seconds    |
-| Without         | 0.0244 seconds  | 2.2710 seconds    |
+| With max_dist   | 0.0330 seconds  |  8.250 seconds    |
+| Without         | 0.2301 seconds  | 21.800 seconds    |
 
 **10,000 iterations on a custom desktop with an AMD A10-6800K:**
 
