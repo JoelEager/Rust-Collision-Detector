@@ -20,7 +20,7 @@ cargo run --release -- [iterations]
 
 | Mode            | Time for Rust   | Time for Python   |
 | --------------- | --------------- | ----------------- |
-| With max_dist   | 0.0330 seconds  |  8.250 seconds    |
+| With max_dist   | 0.0158 seconds  |  8.250 seconds    |
 | Without         | 0.2301 seconds  | 21.800 seconds    |
 
 **10,000 iterations on a custom desktop with an AMD A10-6800K:**
