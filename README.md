@@ -5,7 +5,8 @@ This is a Rust port of the collision detection logic used by pyTanks
 [here](https://github.com/JoelEager/pyTanks.Server/blob/master/gameLogic/collisionDetector.py). Both this 
 implementation and the Python implementation located there are configured to test the execution time of this algorithm.
 
-This algorithm has also been ported to Kotlin [here](https://github.com/JoelEager/Kotlin-Collision-Detector).
+This algorithm has also been ported to Kotlin [here](https://github.com/JoelEager/Kotlin-Collision-Detector) and Java 
+[here](https://github.com/JoelEager/Java-Collision-Detector).
 
 ## Setup
 Just clone this repo and have cargo take care of the setup and compiling as shown below.
@@ -29,5 +30,3 @@ cargo run --release -- [iterations]
 | --------------- | --------------- | ----------------- |
 | With max_dist   | 0.0273 seconds  | 15.844 seconds    |
 | Without         | 0.4651 seconds  | 40.617 seconds    |
-
-(See the Kotlin results [here](https://github.com/JoelEager/Kotlin-Collision-Detector#testing-results).)
